@@ -1,5 +1,5 @@
 
-package eda.tp3.pkg2;
+package eda.tp3_2;
 
 /**
  *

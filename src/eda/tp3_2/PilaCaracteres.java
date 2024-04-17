@@ -14,31 +14,24 @@ package eda.tp3_2;
  *
  * @author Adam, Martin, Agustin
  */
-public class PilaCaracteres {
-   
-    private Character[] pila;
-    protected int length;
-    private int cursor;
+public class PilaCaracteres extends Pila {
 
     public PilaCaracteres(int length) {
-        this.pila = new Character[length];
-        this.length = length;
-        this.cursor = -1;
+        super(length);
+    }
+
+    public PilaCaracteres(int length, Character[] caracteres) {
+        super(length, caracteres);
     }
     
-    public PilaCaracteres(int length, Character caracteres[]){
-        this.pila = caracteres;
-        this.length = caracteres.length;
-        this.cursor = -1;
-    }
-    
-   
     public void push(Character caracteres){
-        if(!PilaLlena()){
-            cursor++;
-            pila[cursor] = caracteres;
+        if(!pilaLlena()){
+            super.cursor++;
+            super.pila[cursor] = caracteres;
         }else{System.out.println("La pila esta llena y no se puede agregar mas elementos");}
     }
+    
+    @Override
     public Character pop(){
         if(!pilaVacia()){
             Character retorno = verElemento();
@@ -50,24 +43,28 @@ public class PilaCaracteres {
         return null;
     }
     
+    @Override
     public boolean pilaVacia(){
         return cursor < 0;
     }
     
-    public boolean PilaLlena(){
+    @Override
+    public boolean pilaLlena(){
         return cursor == length -1;
     }
     
+    @Override
     public Character verElemento(){
         if(!pilaVacia()){
             System.out.println(pila[cursor]);
-            return pila[cursor];
+            return (Character)pila[cursor];
         }
         
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");
         return null;
     }
     
+    @Override
     public PilaCaracteres invierteEficiente(){
         PilaCaracteres pilaAux = new PilaCaracteres(this.length);
         for (int i = 0; i < this.length; i++) {
@@ -76,6 +73,7 @@ public class PilaCaracteres {
         return pilaAux;
     }
     
+    @Override
     public void invierteSimple(){
         PilaCaracteres pilaAux1 = new PilaCaracteres(this.length);
         PilaCaracteres pilaAux2 = new PilaCaracteres(this.length);

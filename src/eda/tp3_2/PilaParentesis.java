@@ -24,61 +24,77 @@ public class PilaParentesis extends Pila{
         CLOSE
     }
 
-    public PilaParentesis(int length) {
-        super(length);
-    }
-
-    public PilaParentesis(int length, String cadena) {
+    public PilaParentesis(String cadena) {
         super(getParentesis(cadena));
         
         if(cadena == null || "".equals(cadena) || this.length < 1){
             esEquilibrada = null;
         }
+        if(length % 2 == 1){
+            esEquilibrada = false;
+            return;
+        }
+//        System.out.println("-----prueba de flujo pares-----");
         for(int i=0; i<super.length; i++){
             Character car = (Character)pila[i];
             if(esParenApertura(car)){
                 push(car);
+//                System.out.println("cursor="+ cursor);
             }
             if(esParenCierre(car)){
                 if(pilaVacia()){
                     esEquilibrada = false;
                     return;
                 }
-                if(!Objects.equals(car, getParenCierre((char)pop()))){
+                if(!Objects.equals(
+                                    getParenApertura(car), 
+                                      (char)pop()
+                                  )
+                  ){
                     esEquilibrada = false;
                     return;
                 }
             }
         }
-        if(pilaVacia()){
-            esEquilibrada = true;
+// El cursor de la superclase empieza en -1 para acceder el primer elemento en el indice 0
+        if(cursor > -1){
+//            System.out.println("cursor="+cursor);
+            esEquilibrada = false;
+            return;
         }
+        esEquilibrada = true;
+        return;
     }
     
-    public static Character[] getParentesis(String cadena){
-        if(cadena == null || cadena.equals("")){
+    public static Character[] getParentesis(String cadena) {
+        if (cadena == null || cadena.equals("")) {
             return null;
         }
         int i = 0;
         String strParen = "";
-        for(char car: cadena.toCharArray()){
-            if(car == parentesis[P.OPEN.ordinal()][i]){
-                strParen += car;
+        for (char car : cadena.toCharArray()) {
+ 
+            for(i=0; i<parentesis.length; i++){
+                if (car == parentesis[i][P.OPEN.ordinal()]) {
+                    strParen += car + "";
+                }
+                if (car == parentesis[i][P.CLOSE.ordinal()]) {
+                    strParen += car + "";
+                }
             }
-            if(car == parentesis[P.CLOSE.ordinal()][i]){
-                strParen += car;
-            }
-            i++;
+            
         }
+//        System.out.println("strParen=\""+ strParen + "\"; strParen.length=" + strParen.length());
         char[] charParen = strParen.toCharArray();
         Character[] carEnvolturaParen = new Character[charParen.length];
-        i=0;
-        for(char car:charParen){
-            carEnvolturaParen[i] = car;
-            i++;
+        int j = 0;
+        for (char car : charParen) {
+            carEnvolturaParen[j] = car;
+            j++;
         }
         return carEnvolturaParen;
     }
+
      
     public Boolean esEquilibrada() {
         return esEquilibrada;
@@ -106,11 +122,38 @@ public class PilaParentesis extends Pila{
         int i = 0;
         for(char[] paren: parentesis){
             if(parenApertura == paren[P.OPEN.ordinal()]){
-                return parentesis[P.CLOSE.ordinal()][i];
+                return parentesis[i][P.CLOSE.ordinal()];
             }
             i++;
         }
         return null;
     }
+    
+    public static Character getParenApertura(Character parenCierre){
+        int i = 0;
+//        System.out.print(parenCierre);
+        for(char[] paren: parentesis){
+            if(parenCierre == paren[P.CLOSE.ordinal()]){
+                return parentesis[i][P.OPEN.ordinal()];
+            }
+            i++;
+        }
+//        System.out.println("CAE EN NULO");
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        if(esEquilibrada == null){
+            return "es nulo";
+//            return super.toString() + "es nulo";
+        }
+        if(!esEquilibrada){
+            return "no es equilibrada.";
+        }
+        return "es equilibrada.";
+    }
+    
+    
     
 }

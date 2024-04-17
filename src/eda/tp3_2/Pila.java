@@ -52,6 +52,7 @@ public class Pila<T>  {
             T retorno = verElemento();
             pila[cursor] = null;
             cursor--;
+//            System.out.println("pop=" + retorno);
             return retorno;
         }
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");

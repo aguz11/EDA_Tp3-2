@@ -56,8 +56,41 @@ public class EDATp32 {
         
         System.out.println(pilaCaracteres.pop());
         System.out.println(pilaCaracteres.pop());
-            
-            
+        
+        /*******************************************************/
+        // PilaParentesis
+        /******************************************************/
+        String ejemploEquilibrado0 = "{[(a+b)*c]-(d+e)}";
+        String ejemploEquilibrado1 = "{[(a+b)*c]-(d+e)";
+        String ejemploEquilibrado2 = "[{()}]";
+        String ejemploNoEquilibrado = "[(])";
+        
+        System.out.println("---------------------------------");
+        System.out.println("Seccion de parentesis");
+        System.out.println("---------------------------------\n");
+        
+        System.out.println("\"ejemploEquilibrado0\"\t" +
+                "\"" + ejemploEquilibrado0 + "\"\t" +
+                new PilaParentesis(ejemploEquilibrado0));
+        
+        System.out.println("");
+        
+        System.out.println("\"ejemploEquilibrado1\"\t" +
+                "\"" + ejemploEquilibrado1 + "\"\t" +
+                new PilaParentesis(ejemploEquilibrado1));
+        
+        System.out.println("");
+        
+        System.out.println("\"ejemploEquilibrado2\"\t\t" +
+                "\"" + ejemploEquilibrado2 + "\"\t" +
+                new PilaParentesis(ejemploEquilibrado2));
+        
+        System.out.println("");
+        
+        System.out.println("\"ejemploNoEquilibrado\"\t\t" +
+                "\"" + ejemploNoEquilibrado + "\"\t\t" +
+                new PilaParentesis(ejemploNoEquilibrado));
+        
         
         
     }//FIN de main()

@@ -47,10 +47,10 @@ classDiagram
 
     }
 
-    PilaParentesis -- Pila
-    PilaParentesis -- P
-    PilaNumeros -- Pila
-    Test --> PilaParentesis
-    Test --> PilaNumeros
+    PilaParentesis --> Pila
+    PilaParentesis --> P
+    PilaNumeros --> Pila
+    Test ..> PilaParentesis
+    Test ..> PilaNumeros
 
 ```

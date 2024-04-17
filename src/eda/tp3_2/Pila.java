@@ -33,6 +33,12 @@ public class Pila<T>  {
         this.cursor = -1;
     }
     
+    public Pila(T[] objeto){
+        this.pila = objeto;
+        this.length = objeto.length;
+        this.cursor = -1;
+    }
+    
     
     public void push(T elemento){
         if(!pilaLlena()){

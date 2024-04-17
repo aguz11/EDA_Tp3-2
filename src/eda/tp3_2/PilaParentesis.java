@@ -18,7 +18,6 @@ import java.util.Objects;
  */
 public class PilaParentesis extends Pila{
     private Boolean esEquilibrada;
-    private Character[] parenArray;
     private static char[][] parentesis = {{'(',')'},{'{','}'},{'[',']'},{'<','>'}};
     private enum P{
         OPEN,
@@ -31,7 +30,6 @@ public class PilaParentesis extends Pila{
 
     public PilaParentesis(int length, String cadena) {
         super(getParentesis(cadena));
-        this.parenArray = getParentesis(cadena);
         
         if(cadena == null || "".equals(cadena) || this.length < 1){
             esEquilibrada = null;
@@ -114,42 +112,5 @@ public class PilaParentesis extends Pila{
         }
         return null;
     }
-    
-//    public static Character getParenApertura(Character parenCierre){
-//        int i = 0;
-//        for(char[] paren: parentesis){
-//            if(parenCierre == paren[P.CLOSE.ordinal()]){
-//                return parentesis[P.OPEN.ordinal()][i];
-//            }
-//            i++;
-//        }
-//        return null;
-//    }
-    
-    
-    
-
-    
-//    public int contarParenApertura(String cadena){
-//        int cantidadParen=0;
-//        char[] charCadena = cadena.toCharArray();
-//        for(char car:charCadena){
-//            if(esParenApertura(car)){
-//                cantidadParen++;
-//            }
-//        }
-//        return cantidadParen;
-//    }
-//    
-//    public int contarParenCierre(String cadena){
-//        int cantidadParen=0;
-//        char[] charCadena = cadena.toCharArray();
-//        for(char car:charCadena){
-//            if(esParenCierre(car)){
-//                cantidadParen++;
-//            }
-//        }
-//        return cantidadParen;
-//    }
     
 }

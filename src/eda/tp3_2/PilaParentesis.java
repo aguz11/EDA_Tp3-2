@@ -16,7 +16,7 @@ import java.util.Objects;
  *
  * @author Adam, Martin, Agustin
  */
-public class PilaParentesis extends Pila{
+public class PilaParentesis {
     private Boolean esEquilibrada;
     private Character[] arrParentesis;
     private static char[][] parentesis = {{'(',')'},{'{','}'},{'[',']'},{'<','>'}};
@@ -24,10 +24,11 @@ public class PilaParentesis extends Pila{
         OPEN,
         CLOSE
     }
+    private Pila pila;
 
     public PilaParentesis(String cadena) {
-        super(getParentesis(cadena));
         this.arrParentesis = getParentesis(cadena);
+        pila = new Pila(arrParentesis.length);
 //        System.out.println(arrParentesis);
         if(cadena == null || "".equals(cadena) || arrParentesis.length < 1){
             esEquilibrada = null;
@@ -44,18 +45,18 @@ public class PilaParentesis extends Pila{
             car = arrParentesis[i];
             
             if(esParenApertura(car)){
-                push(car);
+                pila.push(car);
 //                System.out.println("cursor="+ cursor);
             }
             
             if(esParenCierre(car)){
-                if(pilaVacia()){
+                if(pila.pilaVacia()){
                     esEquilibrada = false;
                     return;
                 }
                 if(!Objects.equals(
                                     getParenApertura(car), 
-                                      (char)pop()
+                                      (char)pila.pop()
                                   )
                   ){
                     esEquilibrada = false;
@@ -65,7 +66,7 @@ public class PilaParentesis extends Pila{
             i++;
         }
 // El cursor de la superclase empieza en -1 para acceder el primer elemento en el indice 0
-        if(cursor > -1){
+        if(pila.cursor > -1){
 //            System.out.println("cursor="+cursor);
             esEquilibrada = false;
             return;

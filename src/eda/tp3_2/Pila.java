@@ -1,82 +1,93 @@
 /*
-Verificación de equilibrio de paréntesis
-Diseña un programa que tome una cadena de texto que puede contener
-varios tipos de paréntesis, incluyendo (), {}, [], y <> y determine si los
-paréntesis están equilibrados en la cadena. Es decir, cada paréntesis de
-apertura tiene su par correspondiente de cierre y están correctamente
-anidados. Utiliza una pila para realizar la verificación. Por ejemplo, la
-cadena "{[(a+b)*c]-(d+e)}" debería ser considerada como  equilibrada,
-mientras que "[{()}]" también lo es, pero "[(])" no lo es.
+ 3.2 – TAD Pilas
+Reunirse en grupos de 3 integrantes
+Cada grupo selecciona y resuelve un ejercicio de cada una de las complejidades
+
+Complejidad baja
+    b. Verificación de equilibrio de paréntesis <Character>
+Complejidad media
+    d. Unidos no mezclados <Integer>
  */
 package eda.tp3_2;
 
 /**
  *
  * @author Adam, Martin, Agustin
+ * @param <T>
  */
-public class PilaCaracteres extends Pila {
+public class Pila<T>  {
+    protected T[] pila;
+    protected int length;
+    protected int cursor;
 
-    public PilaCaracteres(int length) {
-        super(length);
-    }
-
-    public PilaCaracteres(int length, Character[] caracteres) {
-        super(length, caracteres);
+    public Pila(int length) {
+        this.pila = (T[]) new Object[length];
+        this.length = length;
+        this.cursor = -1;
     }
     
-    public void push(Character caracteres){
+  
+    public Pila(int length, T[] elemento){
+        this.pila = elemento;
+        this.length = elemento.length;
+        this.cursor = -1;
+    }
+    
+    public Pila(T[] objeto){
+        this.pila = objeto;
+        this.length = objeto.length;
+        this.cursor = -1;
+    }
+    
+    
+    public void push(T elemento){
         if(!pilaLlena()){
-            super.cursor++;
-            super.pila[cursor] = caracteres;
+            cursor++;
+            pila[cursor] = elemento;
+//            pila.add(entero);
         }else{System.out.println("La pila esta llena y no se puede agregar mas elementos");}
     }
-    
-    @Override
-    public Character pop(){
+    public T pop(){
         if(!pilaVacia()){
-            Character retorno = verElemento();
+            T retorno = verElemento();
             pila[cursor] = null;
             cursor--;
+//            System.out.println("pop=" + retorno);
             return retorno;
         }
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");
         return null;
     }
     
-    @Override
     public boolean pilaVacia(){
         return cursor < 0;
     }
     
-    @Override
     public boolean pilaLlena(){
         return cursor == length -1;
     }
     
-    @Override
-    public Character verElemento(){
+    public T verElemento(){
         if(!pilaVacia()){
-            System.out.println(pila[cursor]);
-            return (Character)pila[cursor];
+//            System.out.println(pila[cursor]);
+            return pila[cursor];
         }
         
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");
         return null;
     }
     
-    @Override
-    public PilaCaracteres invierteEficiente(){
-        PilaCaracteres pilaAux = new PilaCaracteres(this.length);
+    public Pila invierteEficiente(){
+        Pila pilaAux = new Pila(this.length);
         for (int i = 0; i < this.length; i++) {
             pilaAux.push(pop());
         }
         return pilaAux;
     }
     
-    @Override
     public void invierteSimple(){
-        PilaCaracteres pilaAux1 = new PilaCaracteres(this.length);
-        PilaCaracteres pilaAux2 = new PilaCaracteres(this.length);
+        Pila pilaAux1 = new Pila(this.length);
+        Pila pilaAux2 = new Pila(this.length);
         for(int i = 0; i < this.length; i++){
             pilaAux1.push(pop());
         }
@@ -84,7 +95,7 @@ public class PilaCaracteres extends Pila {
             pilaAux2.push(pilaAux1.pop());
         }
         for(int i=0; i< this.length; i++){
-            push(pilaAux2.pop());
+            push((T) pilaAux2.pop());
         }
     }
 
@@ -102,5 +113,7 @@ public class PilaCaracteres extends Pila {
         }
         return "";
     }
-}
+    
 
+    
+}

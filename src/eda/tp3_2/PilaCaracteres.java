@@ -21,7 +21,7 @@ public class PilaCaracteres extends Pila {
     }
 
     public PilaCaracteres(int length, Character[] caracteres) {
-        super(length, caracteres);
+        super(caracteres);
     }
     
     public void push(Character caracteres){

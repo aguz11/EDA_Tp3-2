@@ -12,23 +12,23 @@ package eda.tp3_2;
 
 /**
  *
- * @author adam
+ * @author Adam, Martin, Agustin
  */
 public class PilaCaracteres {
    
     private Character[] pila;
-    protected int size;
+    protected int length;
     private int cursor;
 
-    public PilaCaracteres(int size) {
-        this.pila = new Character[size];
-        this.size = size;
+    public PilaCaracteres(int length) {
+        this.pila = new Character[length];
+        this.length = length;
         this.cursor = -1;
     }
     
-    public PilaCaracteres(int size, Character objeto[]){
+    public PilaCaracteres(int length, Character objeto[]){
         this.pila = objeto;
-        this.size = objeto.length;
+        this.length = objeto.length;
         this.cursor = -1;
     }
     
@@ -55,7 +55,7 @@ public class PilaCaracteres {
     }
     
     public boolean PilaLlena(){
-        return cursor == size -1;
+        return cursor == length -1;
     }
     
     public Character verElemento(){
@@ -69,23 +69,23 @@ public class PilaCaracteres {
     }
     
     public PilaCaracteres invierteEficiente(){
-        PilaCaracteres pilaAux = new PilaCaracteres(this.size);
-        for (int i = 0; i < this.size; i++) {
+        PilaCaracteres pilaAux = new PilaCaracteres(this.length);
+        for (int i = 0; i < this.length; i++) {
             pilaAux.push(pop());
         }
         return pilaAux;
     }
     
     public void invierteSimple(){
-        PilaCaracteres pilaAux1 = new PilaCaracteres(this.size);
-        PilaCaracteres pilaAux2 = new PilaCaracteres(this.size);
-        for(int i = 0; i < this.size; i++){
+        PilaCaracteres pilaAux1 = new PilaCaracteres(this.length);
+        PilaCaracteres pilaAux2 = new PilaCaracteres(this.length);
+        for(int i = 0; i < this.length; i++){
             pilaAux1.push(pop());
         }
-        for(int i=0; i< this.size; i++){
+        for(int i=0; i< this.length; i++){
             pilaAux2.push(pilaAux1.pop());
         }
-        for(int i=0; i< this.size; i++){
+        for(int i=0; i< this.length; i++){
             push(pilaAux2.pop());
         }
     }
@@ -95,7 +95,7 @@ public class PilaCaracteres {
         String retorno = "";
         if(!pilaVacia()){
             int i = 0;
-            while(i < size && pila[i] != null){
+            while(i < length && pila[i] != null){
                 retorno += pila[i].toString();
                 retorno += ", ";
                 i++;

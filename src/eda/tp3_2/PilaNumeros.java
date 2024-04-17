@@ -12,18 +12,18 @@ package eda.tp3_2;
  */
 public class PilaNumeros {
     private Integer[] pila;
-    protected int size;
+    protected int length;
     private int cursor;
 
-    public PilaNumeros(int size) {
-        this.pila = new Integer[size];
-        this.size = size;
+    public PilaNumeros(int length) {
+        this.pila = new Integer[length];
+        this.length = length;
         this.cursor = -1;
     }
     
-    public PilaNumeros(int size, Integer objeto[]){
+    public PilaNumeros(int length, Integer objeto[]){
         this.pila = objeto;
-        this.size = objeto.length;
+        this.length = objeto.length;
         this.cursor = -1;
     }
     
@@ -50,7 +50,7 @@ public class PilaNumeros {
     }
     
     public boolean PilaLlena(){
-        return cursor == size -1;
+        return cursor == length -1;
     }
     
     public Integer verElemento(){
@@ -64,23 +64,23 @@ public class PilaNumeros {
     }
     
     public PilaNumeros invierteEficiente(){
-        PilaNumeros pilaAux = new PilaNumeros(this.size);
-        for (int i = 0; i < this.size; i++) {
+        PilaNumeros pilaAux = new PilaNumeros(this.length);
+        for (int i = 0; i < this.length; i++) {
             pilaAux.push(pop());
         }
         return pilaAux;
     }
     
     public void invierteSimple(){
-        PilaNumeros pilaAux1 = new PilaNumeros(this.size);
-        PilaNumeros pilaAux2 = new PilaNumeros(this.size);
-        for(int i = 0; i < this.size; i++){
+        PilaNumeros pilaAux1 = new PilaNumeros(this.length);
+        PilaNumeros pilaAux2 = new PilaNumeros(this.length);
+        for(int i = 0; i < this.length; i++){
             pilaAux1.push(pop());
         }
-        for(int i=0; i< this.size; i++){
+        for(int i=0; i< this.length; i++){
             pilaAux2.push(pilaAux1.pop());
         }
-        for(int i=0; i< this.size; i++){
+        for(int i=0; i< this.length; i++){
             push(pilaAux2.pop());
         }
     }
@@ -90,7 +90,7 @@ public class PilaNumeros {
         String retorno = "";
         if(!pilaVacia()){
             int i = 0;
-            while(i < size && pila[i] != null){
+            while(i < length && pila[i] != null){
                 retorno += pila[i].toString();
                 retorno += ", ";
                 i++;

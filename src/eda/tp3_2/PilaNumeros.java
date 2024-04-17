@@ -21,17 +21,17 @@ public class PilaNumeros {
         this.cursor = -1;
     }
     
-    public PilaNumeros(int length, Integer objeto[]){
-        this.pila = objeto;
-        this.length = objeto.length;
+    public PilaNumeros(int length, Integer numeros[]){
+        this.pila = numeros;
+        this.length = numeros.length;
         this.cursor = -1;
     }
     
    
-    public void push(Integer objeto){
+    public void push(Integer numeros){
         if(!PilaLlena()){
             cursor++;
-            pila[cursor] = objeto;
+            pila[cursor] = numeros;
         }else{System.out.println("La pila esta llena y no se puede agregar mas elementos");}
     }
     public Integer pop(){

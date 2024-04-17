@@ -26,17 +26,17 @@ public class PilaCaracteres {
         this.cursor = -1;
     }
     
-    public PilaCaracteres(int length, Character objeto[]){
-        this.pila = objeto;
-        this.length = objeto.length;
+    public PilaCaracteres(int length, Character caracteres[]){
+        this.pila = caracteres;
+        this.length = caracteres.length;
         this.cursor = -1;
     }
     
    
-    public void push(Character objeto){
+    public void push(Character caracteres){
         if(!PilaLlena()){
             cursor++;
-            pila[cursor] = objeto;
+            pila[cursor] = caracteres;
         }else{System.out.println("La pila esta llena y no se puede agregar mas elementos");}
     }
     public Character pop(){

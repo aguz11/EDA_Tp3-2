@@ -18,6 +18,7 @@ import java.util.Objects;
  */
 public class PilaParentesis extends Pila{
     private Boolean esEquilibrada;
+    private Character[] arrParentesis;
     private static char[][] parentesis = {{'(',')'},{'{','}'},{'[',']'},{'<','>'}};
     private enum P{
         OPEN,
@@ -26,21 +27,27 @@ public class PilaParentesis extends Pila{
 
     public PilaParentesis(String cadena) {
         super(getParentesis(cadena));
-        
-        if(cadena == null || "".equals(cadena) || this.length < 1){
+        this.arrParentesis = getParentesis(cadena);
+//        System.out.println(arrParentesis);
+        if(cadena == null || "".equals(cadena) || arrParentesis.length < 1){
             esEquilibrada = null;
         }
-        if(length % 2 == 1){
+        if(arrParentesis.length % 2 == 1){
             esEquilibrada = false;
             return;
         }
 //        System.out.println("-----prueba de flujo pares-----");
-        for(int i=0; i<super.length; i++){
-            Character car = (Character)pila[i];
+        int i=0;
+        Character car;
+
+        while(i<arrParentesis.length){
+            car = arrParentesis[i];
+            
             if(esParenApertura(car)){
                 push(car);
 //                System.out.println("cursor="+ cursor);
             }
+            
             if(esParenCierre(car)){
                 if(pilaVacia()){
                     esEquilibrada = false;
@@ -55,6 +62,7 @@ public class PilaParentesis extends Pila{
                     return;
                 }
             }
+            i++;
         }
 // El cursor de la superclase empieza en -1 para acceder el primer elemento en el indice 0
         if(cursor > -1){

@@ -25,21 +25,11 @@ public class Pila<T>  {
         this.length = length;
         this.cursor = -1;
     }
-    
-  
-    public Pila(int length, T[] elemento){
-        this.pila = elemento;
-        this.length = elemento.length;
-        this.cursor = -1;
-    }
-    
+    // Solo tomamos el largo un arreglo para mantener la estructura de la pila
     public Pila(T[] objeto){
-        this.pila = objeto;
-        this.length = objeto.length;
-        this.cursor = -1;
+        this(objeto.length);
     }
-    
-    
+
     public void push(T elemento){
         if(!pilaLlena()){
             cursor++;

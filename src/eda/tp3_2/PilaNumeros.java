@@ -20,7 +20,7 @@ public class PilaNumeros {
     }
     
     public PilaNumeros(int length, Integer numeros[]){
-        this.pila = new Pila<Integer>(length, numeros);
+        this.pila = new Pila<Integer>(numeros);
     }
     
     public int size(){

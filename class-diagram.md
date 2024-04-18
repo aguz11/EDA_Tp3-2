@@ -39,8 +39,11 @@ classDiagram
         CLOSE
     }
 
-    class PilaNumeros {
-        + pila: Pila~Integer~
+    class UnirPilasOrdenadas {
+        + pila1: Pila~Integer~
+        + pila2: Pila~Integer~
+        + UnirPilasOrdenadas(pila1: Pila, pila2: Pila)
+        + combinarPilas()
 
     }
     class Test {
@@ -51,6 +54,6 @@ classDiagram
     PilaParentesis --> P
     PilaNumeros --> Pila
     Test ..> PilaParentesis
-    Test ..> PilaNumeros
+    Test ..> UnirPilasOrdenadas
 
 ```

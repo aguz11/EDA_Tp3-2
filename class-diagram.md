@@ -40,10 +40,7 @@ classDiagram
     }
 
     class UnirPilasOrdenadas {
-        + pila1: Pila~Integer~
-        + pila2: Pila~Integer~
-        + unirPilasOrdenadas(pila1: Pila, pila2: Pila)
-        + combinarPilas() Pila
+        + combinarPilas(pila1: Pila, pila2: Pila)static Pila
 
     }
     class Test {
@@ -52,7 +49,7 @@ classDiagram
 
     PilaParentesis --> Pila
     PilaParentesis --> P
-    PilaNumeros --> Pila
+    UnirPilasOrdenadas --> Pila
     Test ..> PilaParentesis
     Test ..> UnirPilasOrdenadas
 

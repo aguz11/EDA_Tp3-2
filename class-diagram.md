@@ -13,7 +13,7 @@ classDiagram
         + pilaVacia() boolean
         + pilaLlena() boolean
         + verElemento() T
-        + invierteEficiente() Pila
+        + invierteEficiente() void
         + invierteSimple() void
 
     }

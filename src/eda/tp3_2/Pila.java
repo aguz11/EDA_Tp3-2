@@ -67,12 +67,14 @@ public class Pila<T>  {
         return null;
     }
     
-    public Pila invierteEficiente(){
-        Pila pilaAux = new Pila(this.length);
+    public void invierteEficiente(){
+        Pila<T> pilaAux = new Pila<>(this.length);
         for (int i = 0; i < this.length; i++) {
             pilaAux.push(pop());
         }
-        return pilaAux;
+        this.pila = pilaAux.pila;
+        this.length = pilaAux.length;
+        this.cursor = pilaAux.cursor;
     }
     
     public void invierteSimple(){
@@ -93,11 +95,13 @@ public class Pila<T>  {
     public String toString() {
         String retorno = "";
         if(!pilaVacia()){
-            int i = 0;
-            while(i < length && pila[i] != null){
-                retorno += pila[i].toString();
-                retorno += ", ";
-                i++;
+            int i = cursor;
+            while(!pilaVacia() && i > -1){
+                if(pila[i] != null){
+                    retorno += pila[i] + "";
+                    retorno += ", ";
+                }
+                i--;
             }
         return "Pila {" + retorno + '}';
         }

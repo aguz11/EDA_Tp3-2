@@ -8,55 +8,48 @@ public class EDATp32 {
 
     public static void main(String[] args) {
         /*******************************************************/
-        // PilaNumeros re imaginada
+        // Unidos no mezclados
         /******************************************************/
+        int[]datosPila1 = {11, 22, 34, 55};
+        int[]datosPila2 = {0, 8, 14, 22, 30, 65};
         
-        PilaNumeros numbers = new PilaNumeros(10);
+        Pila<Integer> pila1 = new Pila<>(datosPila1.length);
+        Pila<Integer> pila2 = new Pila<>(datosPila2.length);
         
-        for(int i=0; i<numbers.size(); i++){
-            numbers.pila.push(i);
-        }
-        System.out.println(numbers.pila);
-        
-        numbers.pila.push(1);
-        
-        for(int i=0; i<numbers.size(); i++){
-            numbers.pila.pop();
+        for(int num:datosPila1){
+            pila1.push((Integer)num);
         }
         
-        System.out.println("Se vacieron los numeros...");
+        for(int num:datosPila2){
+            pila2.push((Integer)num);
+        }
+        
+        System.out.println("--------------------");
+        System.out.println("Datos Pila1");
+        System.out.println("--------------------");
+        System.out.println(pila1);
+        
+        System.out.println("--------------------");
+        System.out.println("Datos Pila2");
+        System.out.println("--------------------");
+
+        System.out.println(pila2);
+        
+        
+        
+        Pila<Integer> pilaUnida = UnirPilasOrdenadas.combinarPilas(pila1, pila2);
+        
+        System.out.println("--------------------");
+        System.out.println("Datos pilas unidas");
+        System.out.println("--------------------");
+        
+        System.out.println(pilaUnida);
+    
+        // No deberiamos ver datos con los print a continuacion
+        System.out.print(pila1);
+        System.out.print(pila2);
         System.out.println("");
-        numbers.pila.pop();
-        
-        /*******************************************************/
-        // PilaCaracteres re imaginada
-        /******************************************************/
-        System.out.println("");
-        System.out.println("---------------------------------");
-        System.out.println("Seccion de letras");
-        System.out.println("---------------------------------\n");
-        Pila<Character> pilaCaracteres = new Pila<>(5);
-        pilaCaracteres.push('a');
-        pilaCaracteres.push('i');
-        pilaCaracteres.push('w');
-        pilaCaracteres.push(')');
-        pilaCaracteres.push(':');
-        
-        System.out.println(pilaCaracteres);
-        System.out.println("");
-        
-        System.out.print(pilaCaracteres.pop());
-        System.out.println(pilaCaracteres.pop());
-        
-        System.out.println(pilaCaracteres.verElemento());
-        System.out.println(pilaCaracteres.verElemento());
-        
-        System.out.print(pilaCaracteres.pop());
-        System.out.println(pilaCaracteres.pop());
-        
-        System.out.println(pilaCaracteres.pop());
-        System.out.println(pilaCaracteres.pop());
-        
+     
         /*******************************************************/
         // PilaParentesis
         /******************************************************/

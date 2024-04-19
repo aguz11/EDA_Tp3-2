@@ -42,8 +42,8 @@ classDiagram
     class UnirPilasOrdenadas {
         + pila1: Pila~Integer~
         + pila2: Pila~Integer~
-        + UnirPilasOrdenadas(pila1: Pila, pila2: Pila)
-        + combinarPilas()
+        + unirPilasOrdenadas(pila1: Pila, pila2: Pila)
+        + combinarPilas() Pila
 
     }
     class Test {

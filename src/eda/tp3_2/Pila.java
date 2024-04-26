@@ -73,7 +73,6 @@ public class Pila<T>  {
             pilaAux.push(pop());
         }
         this.pila = pilaAux.pila;
-        this.length = pilaAux.length;
         this.cursor = pilaAux.cursor;
     }
     

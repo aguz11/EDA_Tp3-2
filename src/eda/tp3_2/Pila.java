@@ -18,12 +18,12 @@ package eda.tp3_2;
 public class Pila<T>  {
     protected T[] pila;
     protected int length;
-    protected int cursor;
+    protected int tope;
 
     public Pila(int length) {
         this.pila = (T[]) new Object[length];
         this.length = length;
-        this.cursor = -1;
+        this.tope = -1;
     }
     // Solo tomamos el largo un arreglo para mantener la estructura de la pila
     public Pila(T[] objeto){
@@ -32,17 +32,16 @@ public class Pila<T>  {
 
     public void push(T elemento){
         if(!pilaLlena()){
-            cursor++;
-            pila[cursor] = elemento;
+            tope++;
+            pila[tope] = elemento;
 //            pila.add(entero);
         }else{System.out.println("La pila esta llena y no se puede agregar mas elementos");}
     }
     public T pop(){
         if(!pilaVacia()){
             T retorno = verElemento();
-            pila[cursor] = null;
-            cursor--;
-//            System.out.println("pop=" + retorno);
+            pila[tope] = null;
+            tope--;
             return retorno;
         }
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");
@@ -50,17 +49,16 @@ public class Pila<T>  {
     }
     
     public boolean pilaVacia(){
-        return cursor < 0;
+        return tope < 0;
     }
     
     public boolean pilaLlena(){
-        return cursor == length -1;
+        return tope == length -1;
     }
     
     public T verElemento(){
         if(!pilaVacia()){
-//            System.out.println(pila[cursor]);
-            return pila[cursor];
+            return pila[tope];
         }
         
         System.out.println("La pila esta vacia y no se puede quitar mas elementos");
@@ -73,7 +71,7 @@ public class Pila<T>  {
             pilaAux.push(pop());
         }
         this.pila = pilaAux.pila;
-        this.cursor = pilaAux.cursor;
+        this.tope = pilaAux.tope;
     }
     
     public void invierteSimple(){
@@ -94,7 +92,7 @@ public class Pila<T>  {
     public String toString() {
         String retorno = "";
         if(!pilaVacia()){
-            int i = cursor;
+            int i = tope;
             while(!pilaVacia() && i > -1){
                 if(pila[i] != null){
                     retorno += pila[i] + "";
